@@ -4,20 +4,24 @@ import mpmath
 import SofaResults
 import numpy as np
 import matplotlib.pyplot as plt
+import SofaResults
 
 
 def init_dict():
+    tminfo_dict = SofaResults.team_info()
+    master_dict = {}
+    for key, val in tminfo_dict.items():
+        master_dict[val['name3']] = {'tm_id': key, 'name': val['name']}
+        
     team_abbrs = ["ARS", "AVL", "BHA", "BOU", "BUR", "CHE", "CRY", "EVE",
                   "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SHU", "SOU",
                   "TOT", "WAT", "WHU", "WOL"]
 
-    master_dict = {}
-
     for i in range(20):
         tm_id = i + 10
-        master_dict[team_abbrs[i]] = {"tm_id": tm_id, "ratings": [1500],
+        master_dict[team_abbrs[i]].update({"ratings": [1500],
                                       "fixtures": [], "results": [],
-                                      "elo_current": 1500}
+                                      "elo_current": 1500})
     return master_dict
 
 
