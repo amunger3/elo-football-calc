@@ -90,13 +90,25 @@ def ratings_plot(team_list):
 
 def exp_json():
     master_dict = build_ratings()
+    
     for team in master_dict.keys():
-        master_dict[team]['ratings'] = mpmath.nstr(master_dict[team]['ratings'])
-        master_dict[team]['elo_current'] = mpmath.nstr(master_dict[team]['elo_current'])
+        
+        mean = mpmath.fdiv(sum(master_dict[team]['results']), len(master_dict[team]['results']))
+        master_dict[team]['calc_stats'] = {'mean': float(mean)}
+
+        chrono_rat = []
+        for match in master_dict[team]['ratings']:
+            chrono_rat.append(float(match))
+        
+        master_dict[team]['ratings'] = chrono_rat
+        
+        master_dict[team]['elo_current'] = float(master_dict[team]['elo_current'])
+        
     jmd = json.dumps(master_dict)
     f = open("epl.json","w")
     f.write(jmd)
     f.close()
+    
     return
         
     
