@@ -10,3 +10,5 @@ python -m venv env
 env/Scripts/avtivate
 pip install -r requirements.txt
 ```
+
+Now just ```python run.py``` to build the json and write it.
