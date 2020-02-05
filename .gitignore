@@ -1,0 +1,8 @@
+# Virtual Environment
+env/
+
+# Visual Studio Code config
+.vscode/
+
+# Unused, deprecated code
+deprecated/
