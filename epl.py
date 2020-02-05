@@ -79,7 +79,7 @@ def print_desc():
 
 def ratings_plot(team_list):
     master_dict = build_ratings()
-    round_num = [i+1 for i in range(24)]
+    round_num = [i+1 for i in range(25)]
 
     for team in team_list:
         plt.plot(round_num, master_dict[team]['ratings'])
