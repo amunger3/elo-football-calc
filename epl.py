@@ -27,7 +27,7 @@ def init_dict():
 
 def build_ratings():
     master_dict = init_dict()
-    res_list = SofaResults.comb_all(24)
+    res_list = SofaResults.comb_all(25)
 
     for res in res_list:
         
