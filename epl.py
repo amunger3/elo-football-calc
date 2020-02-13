@@ -27,7 +27,8 @@ def init_dict():
 
 def build_ratings():
     master_dict = init_dict()
-    res_list = SofaResults.comb_all(25)
+    round_num =SofaResults.get_round() 
+    res_list = SofaResults.comb_all(round_num)
 
     for res in res_list:
         

@@ -38,6 +38,12 @@ def fetch_json(api_endpoint):
 
     return res_j
 
+def get_round():
+    json_season_url = "https://www.sofascore.com/u-tournament/17/season/23776/json"
+    json_response = fetch_json(json_season_url)
+    current_round = json_response['standingsTables'][0]['round']
+    return current_round
+
 
 def parse_json(api_round):
 
