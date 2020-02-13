@@ -1,0 +1,11 @@
+# Python binaries
+__pycache__/
+
+# Virtual Environment
+venv/
+
+# Visual Studio Code config
+.vscode/
+
+# Unused, deprecated code
+deprecated/
