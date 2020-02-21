@@ -12,3 +12,7 @@ pip install -r requirements.txt
 ```
 
 Now just ```python run.py``` to build the json and write it.
+
+# Documentation
+
+in ```/doc/Elo Football Ratings — Documentation.md```
