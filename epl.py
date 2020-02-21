@@ -4,7 +4,6 @@ import mpmath
 import SofaResults
 import numpy as np
 import matplotlib.pyplot as plt
-import SofaResults
 
 
 def init_dict():
