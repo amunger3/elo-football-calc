@@ -12,7 +12,7 @@ def init_dict():
     master_dict = {}
     for key, val in tminfo_dict.items():
         master_dict[val['name3']] = {'tm_id': key, 'name': val['name']}
-        
+
     team_abbrs = ["ARS", "AVL", "BHA", "BOU", "BUR", "CHE", "CRY", "EVE",
                   "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SHU", "SOU",
                   "TOT", "WAT", "WHU", "WOL"]
@@ -20,18 +20,18 @@ def init_dict():
     for i in range(20):
         tm_id = i + 10
         master_dict[team_abbrs[i]].update({"ratings": [1500],
-                                      "fixtures": [], "results": [],
-                                      "elo_current": 1500})
+                                           "fixtures": [], "results": [],
+                                           "elo_current": 1500})
     return master_dict
 
 
 def build_ratings():
     master_dict = init_dict()
-    round_num =SofaResults.get_round() 
+    round_num = SofaResults.get_round()
     res_list = SofaResults.comb_all(round_num)
 
     for res in res_list:
-        
+
         team_1 = res[0][0]
         team_2 = res[0][1]
         score_1 = res[1][0]
@@ -54,7 +54,6 @@ def build_ratings():
         master_dict[team_2]['ratings'].append(new_elo_2)
         master_dict[team_2]['elo_current'] = new_elo_2
 
-
     return master_dict
 
 
@@ -69,7 +68,7 @@ def print_desc():
         sort_dict[elo_curr] = (team, matches)
         sort_list.append(elo_curr)
 
-    sort_list.sort(reverse = True)
+    sort_list.sort(reverse=True)
 
     for i in range(20):
         rating = sort_list[i]
@@ -89,28 +88,28 @@ def ratings_plot(team_list):
 
     return
 
+
 def exp_json():
     master_dict = build_ratings()
-    
+
     for team in master_dict.keys():
-        
-        mean = mpmath.fdiv(sum(master_dict[team]['results']), len(master_dict[team]['results']))
+
+        mean = mpmath.fdiv(sum(master_dict[team]['results']), len(
+            master_dict[team]['results']))
         master_dict[team]['calc_stats'] = {'mean': float(mean)}
 
         chrono_rat = []
         for match in master_dict[team]['ratings']:
             chrono_rat.append(float(match))
-        
+
         master_dict[team]['ratings'] = chrono_rat
-        
-        master_dict[team]['elo_current'] = float(master_dict[team]['elo_current'])
-        
+
+        master_dict[team]['elo_current'] = float(
+            master_dict[team]['elo_current'])
+
     jmd = json.dumps(master_dict)
-    f = open("epl.json","w")
+    f = open("epl.json", "w")
     f.write(jmd)
     f.close()
-    
+
     return
-        
-    
-exp_json()
