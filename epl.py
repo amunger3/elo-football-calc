@@ -2,12 +2,38 @@ import elo
 import json
 import mpmath
 import SofaResults
+from SofaResults import SofaSeason
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-def init_dict():
-    tminfo_dict = SofaResults.team_info('epl')
+class League:
+    def __init__(self, lg=''):
+        self.league = SofaSeason(lg)
+
+    def init_dict(self):
+        lg = self.league
+        tminfo_dict = lg.team_info()[1]
+        master_dict = {}
+        for key, val in tminfo_dict.items():
+            master_dict[val['name3']] = {'tm_id': int(key), 'name': val['name']}
+
+        team_abbrs = ["ARS", "AVL", "BHA", "BOU", "BUR", "CHE", "CRY", "EVE",
+                      "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SHU", "SOU",
+                      "TOT", "WAT", "WHU", "WOL"]
+
+        for i in range(20):
+            tm_id = i + 10
+            master_dict[team_abbrs[i]].update({"ratings": [1500],
+                                               "fixtures": [], "results": [],
+                                               "elo_current": 1500})
+        return master_dict
+
+
+
+def init_dict(lg_name):
+    epl = SofaSeason(lg_name)
+    tminfo_dict = epl.team_info()[1]
     master_dict = {}
     for key, val in tminfo_dict.items():
         master_dict[val['name3']] = {'tm_id': int(key), 'name': val['name']}
@@ -25,9 +51,10 @@ def init_dict():
 
 
 def build_ratings():
-    master_dict = init_dict()
-    round_num = SofaResults.get_round()
-    res_list = SofaResults.comb_all(round_num)
+    epl = SofaSeason('epl')
+    master_dict = init_dict('epl')
+    round_num = epl.get_round()
+    res_list = epl.comb_all()
 
     for res in res_list:
 
