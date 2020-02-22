@@ -7,12 +7,10 @@ To install:
 
 ```bash
 python -m venv env
-env/Scripts/avtivate
+env/Scripts/activate
 pip install -r requirements.txt
 ```
 
 Now just ```python run.py``` to build the json and write it.
 
 # Documentation
-
-in ```/doc/Elo Football Ratings — Documentation.md```
