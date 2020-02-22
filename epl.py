@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 
 
 def init_dict():
-    tminfo_dict = SofaResults.team_info()
+    tminfo_dict = SofaResults.team_info('epl')
     master_dict = {}
     for key, val in tminfo_dict.items():
-        master_dict[val['name3']] = {'tm_id': key, 'name': val['name']}
+        master_dict[val['name3']] = {'tm_id': int(key), 'name': val['name']}
 
     team_abbrs = ["ARS", "AVL", "BHA", "BOU", "BUR", "CHE", "CRY", "EVE",
                   "LEI", "LIV", "MCI", "MUN", "NEW", "NOR", "SHU", "SOU",

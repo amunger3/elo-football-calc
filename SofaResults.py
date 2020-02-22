@@ -2,27 +2,10 @@ from bs4 import BeautifulSoup
 import urllib.request
 import json
 
-def team_info():
-    tminfo_dict = {3: {'name': 'Wolverhampton', 'name3': 'WOL'},
-                   6: {'name': 'Burnley', 'name3': 'BUR'},
-                   7: {'name': 'Crystal Palace', 'name3': 'CRY'},
-                   15: {'name': 'Sheffield United', 'name3': 'SHU'},
-                   17: {'name': 'Manchester City', 'name3': 'MCI'},
-                   24: {'name': 'Watford', 'name3': 'WAT'},
-                   30: {'name': 'Brighton & Hove Albion', 'name3': 'BHA'},
-                   31: {'name': 'Leicester City', 'name3': 'LEI'},
-                   33: {'name': 'Tottenham', 'name3': 'TOT'},
-                   35: {'name': 'Manchester United', 'name3': 'MUN'},
-                   37: {'name': 'West Ham United', 'name3': 'WHU'},
-                   38: {'name': 'Chelsea', 'name3': 'CHE'},
-                   39: {'name': 'Newcastle United', 'name3': 'NEW'},
-                   40: {'name': 'Aston Villa', 'name3': 'AVL'},
-                   42: {'name': 'Arsenal', 'name3': 'ARS'},
-                   44: {'name': 'Liverpool', 'name3': 'LIV'},
-                   45: {'name': 'Southampton', 'name3': 'SOU'},
-                   48: {'name': 'Everton', 'name3': 'EVE'},
-                   60: {'name': 'Bournemouth', 'name3': 'BOU'},
-                   263: {'name': 'Norwich City', 'name3': 'NOR'}}
+def team_info(lg3):
+    lg_info = open('sofa_cfg.json', 'r')
+    lg_json = json.load(lg_info)
+    tminfo_dict = lg_json[lg3]
     return tminfo_dict
 
 
@@ -47,7 +30,7 @@ def get_round():
 
 def parse_json(api_round):
 
-    tm_byid = team_info()
+    tm_byid = team_info('epl')
 
     epl_19_20 = "https://www.sofascore.com/u-tournament/17/season/23776/matches/round/"
     round_num = [i+1 for i in range(38)]
@@ -67,8 +50,8 @@ def parse_json(api_round):
             homeTeam = event['homeTeam']
             awayTeam = event['awayTeam']
 
-            home_n3 = tm_byid[homeTeam['id']]['name3']
-            away_n3 = tm_byid[awayTeam['id']]['name3']
+            home_n3 = tm_byid[str(homeTeam['id'])]['name3']
+            away_n3 = tm_byid[str(awayTeam['id'])]['name3']
 
             codeTup = {1: (1, 0),
                        2: (0, 1),
