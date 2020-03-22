@@ -1,6 +1,7 @@
 from SofaResults import SofaSeason
 import elo
 import mpmath as mp
+import numpy as np
 import pandas as pd
 
 
@@ -8,10 +9,11 @@ class LgDF:
     def __init__(self, league):
         self.league = SofaSeason(league)
         self.round_num = self.league.get_round()
+        self.tminfo_dict = self.league.team_info()[1]
 
     def init_dict(self):
         sofa_lg = self.league
-        tminfo_dict = sofa_lg.team_info()[1]
+        tminfo_dict = self.tminfo_dict
         df_dict = {}
         for team_id in tminfo_dict.keys():
             df_dict[team_id] = {"ratings": [
@@ -75,6 +77,7 @@ class LgDF:
         return df_agg
 
     def ratings_frame(self):
+        tminfo_dict = self.tminfo_dict
         df_ratings = self.build_ratings()
         num_ratings = self.round_num + 1
         team_list = []
@@ -87,9 +90,16 @@ class LgDF:
             print(team, len(data['ratings']))
             ratings_nest.append(data['ratings'])
         rounds = [i for i in range(num_ratings)]
+        TeamInfo = []
+        for tm in team_list:
+            tiSingle = [tm, tminfo_dict[tm]['name'], tminfo_dict[tm]['name3']]
+            TeamInfo.append(tiSingle)
+        tm_heads = ['id', 'name', 'abbr']
+        TMi = pd.DataFrame(TeamInfo, columns=tm_heads)
         DFr = pd.DataFrame(ratings_nest, columns=rounds)
-        return DFr
+        nph = np.hstack((TMi, DFr))
+        return nph
 
 
 #e2 = LgDF('epl')
-# e2.df_ready()
+#e2.ratings_frame()
