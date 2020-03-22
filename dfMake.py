@@ -76,9 +76,9 @@ class LgDF:
         df_agg = self.agg_stats(df_dict)
         return df_agg
 
-    def ratings_frame(self):
+    def ratings_frame(self, df_ratings):
         tminfo_dict = self.tminfo_dict
-        df_ratings = self.build_ratings()
+        # df_ratings = self.build_ratings()
         num_ratings = self.round_num + 1
         team_list = []
         ratings_nest = []
