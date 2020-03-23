@@ -24,8 +24,6 @@ class MainApp():
             self.mainframe = pd.DataFrame(npEPL, columns = cols)
             self.mainframe.set_index('id')
 
-            self.mainframe.to_html('index.html')
-
             # Put DataFrame into the object setting the key as 'preprocessed_df'
             self.data_store['preprocessed_df'] = self.mainframe
             self.data_store.close()
@@ -41,13 +39,20 @@ class MainApp():
 
 
     def get_df(self):
-        
+
         return self.mainframe
+
+    
+    def write_html(self):
+
+        self.mainframe.to_html('index.html', classes=['uk-table'], table_id='epl-main', float_format='{0:.1f}'.format)
 
 
 
 if __name__ == '__main__':
-    dfApp = MainApp(refresh = True)
+    dfApp = MainApp(refresh = False)
+    dfApp.write_html()
+    DatFr = dfApp.get_df()
 
 
 
