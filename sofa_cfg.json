@@ -1,0 +1,27 @@
+{
+    "epl": [
+            ["17", "23776"], 
+            {
+                "3": {"name": "Wolverhampton", "name3": "WOL"},
+                "6": {"name": "Burnley", "name3": "BUR"},
+                "7": {"name": "Crystal Palace", "name3": "CRY"},
+                "15": {"name": "Sheffield United", "name3": "SHU"},
+                "17": {"name": "Manchester City", "name3": "MCI"},
+                "24": {"name": "Watford", "name3": "WAT"},
+                "30": {"name": "Brighton & Hove Albion", "name3": "BHA"},
+                "31": {"name": "Leicester City", "name3": "LEI"},
+                "33": {"name": "Tottenham", "name3": "TOT"},
+                "35": {"name": "Manchester United", "name3": "MUN"},
+                "37": {"name": "West Ham United", "name3": "WHU"},
+                "38": {"name": "Chelsea", "name3": "CHE"},
+                "39": {"name": "Newcastle United", "name3": "NEW"},
+                "40": {"name": "Aston Villa", "name3": "AVL"},
+                "42": {"name": "Arsenal", "name3": "ARS"},
+                "44": {"name": "Liverpool", "name3": "LIV"},
+                "45": {"name": "Southampton", "name3": "SOU"},
+                "48": {"name": "Everton", "name3": "EVE"},
+                "60": {"name": "Bournemouth", "name3": "BOU"},
+                "263": {"name": "Norwich City", "name3": "NOR"}
+            }
+        ]
+}
